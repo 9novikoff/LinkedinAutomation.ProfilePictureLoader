@@ -1,4 +1,4 @@
-![image](https://github.com/9novikoff/LinkedinAutomation.ProfilePictureLoader/assets/93492723/126d56bd-f09f-453e-81fd-496bb90b1d99)![image](https://github.com/9novikoff/LinkedinAutomation.ProfilePictureLoader/assets/93492723/7d130ff4-d05b-414b-ba30-238e89d12ef9)# LinkedinAutomation.ProfilePictureLoader
+LinkedinAutomation.ProfilePictureLoader
 
 Application for linkedin profile picture loading.
 
