@@ -19,5 +19,4 @@ Step-by-step instructions on how to setup the project.
     - Add sign in using OpenId product ![image](https://github.com/9novikoff/LinkedinAutomation.ProfilePictureLoader/assets/93492723/8aa6a5e0-23f0-4730-a9d2-ae976ee11675)
 3. Using ngrok expose localhost port used in api (8080 by default) 
 4. Add this url to redirect url's in Linkedin
-![image](https://github.com/9novikoff/LinkedinAutomation.ProfilePictureLoader/assets/93492723/baec34a0-cbf4-426f-867a-1795180e975d)
 5. Fill empty string values in appsettings.json (except AccessToken - it will be set automatically)
