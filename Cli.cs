@@ -11,12 +11,14 @@ public class Cli : BackgroundService
     private readonly IUserService _userService;
     private readonly IImageLoader _imageLoader;
     private readonly IConfiguration _config;
+    private readonly IHostApplicationLifetime _hostApplicationLifetime;
 
-    public Cli(IConfiguration config, IUserService userService, IImageLoader imageLoader)
+    public Cli(IConfiguration config, IUserService userService, IImageLoader imageLoader, IHostApplicationLifetime hostApplicationLifetime)
     {
         _config = config;
         _userService = userService;
         _imageLoader = imageLoader;
+        _hostApplicationLifetime = hostApplicationLifetime;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -26,6 +28,7 @@ public class Cli : BackgroundService
         if (accessToken == null)
         {
             Console.WriteLine("Add Authentication:AccessToken to the appsettings.json");
+            _hostApplicationLifetime.StopApplication();
             return;
         }
         
@@ -41,6 +44,7 @@ public class Cli : BackgroundService
 
                     if (response == null || response.ToLower().Equals("no") || response.ToLower().Equals("n"))
                     {
+                        _hostApplicationLifetime.StopApplication();
                         return;
                     }
 
@@ -71,11 +75,13 @@ public class Cli : BackgroundService
                 await _userService.GetUserProfileAsync(_config["Url:UserInfoUrl"]!, accessToken, stoppingToken);
             await _imageLoader.LoadImageAsync(userProfileResponse.Picture, null, stoppingToken);
             Console.WriteLine("Profile picture successfully saved");
+            _hostApplicationLifetime.StopApplication();
         }
         catch (UnauthorizedAccessException e)
         {
             Console.WriteLine("Invalid token. Please authorize");
             Utils.AddOrUpdateAppSetting("Authentication:AccessToken", "");
+            _hostApplicationLifetime.StopApplication();
         }
     }
 }
