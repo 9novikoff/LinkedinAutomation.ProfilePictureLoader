@@ -1,0 +1,6 @@
+@LinkedinAutomation_HostAddress = http://localhost:5228
+
+GET {{LinkedinAutomation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
